@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Django",
+            "request": "launch",
+            "stopOnEntry": false,
+            "type": "python",
+            "python": "C:/Users/Moyses/Envs/django_env/Scripts/python",
+            "program": "manage.py",
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "runserver",
+            ],
+            "django": true,
+            "env": {
+                "DJANGO_DB_NAME": "test",
+                "DJANGO_DEBUG": "True",
+            }
+        }
+    ]
+}
