@@ -7,14 +7,15 @@
             "stopOnEntry": false,
             "type": "python",
             "python": "C:/Users/Moyses/Envs/django_env/Scripts/python",
-            "program": "manage.py",
-            "cwd": "${workspaceFolder}/src",
+            "program": "src/manage.py",
+            "cwd": "${workspaceFolder}/",
             "args": [
                 "runserver",
             ],
             "django": true,
             "env": {
-                "DJANGO_DB_NAME": "test",
+                "DJANGO_TESTER_USERNAME": "olaf",
+                "DJANGO_TESTER_PASSWORD": "abc1234",
                 "DJANGO_DEBUG": "True",
             }
         }

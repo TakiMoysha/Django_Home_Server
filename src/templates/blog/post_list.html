@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Post List </h1>
+    {% if user.is_authenticated %}
+        {% include 'components/new_post.html' %}
+    {% endif %}
+    {% for post in posts_list.0 %}
+        <div>
+            <h1><a href={% url "post_detail" post_index=post.id %}>{{ post.title }}</a></h1>
+            <p>published: {{ post.published_date }}</p>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
