@@ -7,9 +7,19 @@
     {% endif %}
     {% for post in posts_list.0 %}
         <div>
-            <h1><a href={% url "post_detail" post_index=post.id %}>{{ post.title }}</a></h1>
-            <p>published: {{ post.published_date }}</p>
+            <h2><a href={% url "post_detail" primary_key=post.id %}>{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
+            <span>{{ post.published_date.date }}</span>
+            <span>{{ post.published_date.time }}</span>
+            <p><a href={% url "post_detail" primary_key=post.id %}>Link</a></p>
         </div>
     {% endfor %}
 {% endblock %}
+
+<div>
+  <h2>Title</h2>
+  <p>Tasogdnhasdofgha</p>
+  <span class="time">8:33<span>
+  <span class="data">02.03.2133<span>
+  <link>Link</link>
+</div>
