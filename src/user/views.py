@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
@@ -36,3 +37,14 @@ def profile(request):
         'p_form': profile_form
     }
     return render(request, 'users/profile.html', context)
+
+
+def login_view(request):
+    view = auth_views.LoginView.as_view(template_name='users/login.html')
+    return view
+
+
+def logout_view(request):
+    view = auth_views.LogoutView.as_view(template_name='users/logout.html')
+    return view
+
