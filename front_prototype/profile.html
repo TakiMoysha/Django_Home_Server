@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Home</title>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Home Server</h1>
+  <p>Server for storing files, simplifying the exchange between the devices of the local network and remote printing</p>
+</div>
+
+<div class="navbar" role="navigation">
+  <a id="menu-item" href="index.html" class="menu-item">Home</a>
+  <a id="menu-item" href="files.html" class="menu-item">Files</a>
+  <a id="menu-item" href="profile.html" class="menu-item active">Profile</a>
+  <a id="menu-item" href="sign_in.html" class="menu-item right">Sign In</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <h2>Additional column</h2>
+    <p>This block for status, notifications and other dynamic informations</p>
+    <h3>Devices</h3>	
+    <p>Block for connected devices</p>
+    <div class="fakeimg" style="height:60px;">Server status</div><br>
+    <div class="fakeimg" style="height:60px;">Printer status</div><br>
+  </div>
+  <div class="main">
+  	<div class="user-header">
+  		<div class="user-profile-top">
+			<span class="avatar-wrapper">
+		  		<a href="assets/images/default_avatar.png" class="avatar avatar--1">
+		  			<img src="assets/images/default_avatar.png" alt="Username" class="avatar" width="192" height="192" loading="lazy"></a>
+		  	</span>
+		  	<div class="user-profile-top-content">
+		  		<h2>Username</h2>
+		  		<h5>User status</h5>
+		  	</div>
+		</div>
+  		<div class="user-profile-bottom">
+  			<span class="user-scroll-header" role="navigation">
+  				<a href="#page_one" class="user-profile-tab ripple-button tabs-button" role="tab" for="page_one_trigger">
+  					page1
+  				</a>
+  				<a href="#page_two" class="user-profile-tab ripple-button tabs-button" role="tab" for="page_two_trigger">
+  					page2
+  				</a>
+  				<a href="#page_three" class="user-profile-tab ripple-button tabs-button" role="tab" for="page_three_trigger">
+  					page3
+  				</a>
+  			</span>
+  		</div>
+  	</div>
+  	<div class="tabs">
+	  	<div class="user-profile-bottom-tab tab-content" id="page_one">Page One</div>
+		<div class="user-profile-bottom-tab tab-content" id="page_two">Page Two</div>
+		<div class="user-profile-bottom-tab tab-content" id="page_three">Page Three</div>
+	</div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+</html>
