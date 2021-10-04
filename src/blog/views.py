@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -25,12 +26,12 @@ def post_list(request):
     return render(request, 'blog/post_list.html', context)
 
 
-def post(request, post_index):
+def post(request, primary_key):
     try:
-        post = Post.objects.get(pk=post_index)
+        post = Post.objects.get(pk=primary_key)
         context = {'post': post}
         return render(request, 'blog/post_details.html', context)
-    except Exception as e:
+    except ObjectDoesNotExist as e:
         context = {"html_response": request.get_full_path()}
         return render(request, 'blog/error_not_found.html', context=context)
 

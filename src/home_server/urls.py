@@ -1,10 +1,8 @@
-from django.contrib import admin
-from django.http import request
 from django.urls import path
+from django.contrib import admin
 
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from blog.views import post_list, post, post_new
 
@@ -16,11 +14,10 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
 
     path('post/new/', post_new, name='post_new'),
-    path('post/<int:post_index>/', post, name='post_detail'),
+    path('post/<int:primary_key>/', post, name='post_detail'),
 
-    path('register/', register, name='register'),
     path('profile/', profile, name='profile'),
-
+    path('register/', register, name='register'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
 ]
