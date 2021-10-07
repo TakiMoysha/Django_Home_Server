@@ -16,7 +16,7 @@
             "env": {
                 "DJANGO_TESTER_USERNAME": "olaf",
                 "DJANGO_TESTER_PASSWORD": "abc1234",
-                "DJANGO_DEBUG": "True",
+                "DJANGO_DEBUG": "False",
             }
         },
     ]
