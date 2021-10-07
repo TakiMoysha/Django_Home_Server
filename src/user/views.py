@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+
+from user.models import Profile
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 def register(request):
@@ -16,9 +18,15 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+def profile(request, username):
+    user = User.objects.get(username=request.user)
+    print(username)
+    context = {}
+    return render(request, 'users/profile.html', context)
+
 
 @login_required
-def profile(request):
+def my_profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -40,11 +48,13 @@ def profile(request):
 
 
 def login_view(request):
-    view = auth_views.LoginView.as_view(template_name='users/login.html')
-    return view
+    return auth_views.LoginView.as_view(template_name='users/login.html')
 
 
 def logout_view(request):
     view = auth_views.LogoutView.as_view(template_name='users/logout.html')
-    return view
+    context = {
+        login_view: login_view
+    }
+    return auth_views.LogoutView.as_view(template_name='users/logout.html')
 

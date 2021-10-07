@@ -5,13 +5,30 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    bio = models.TextField(
+        verbose_name='Биография',
+        blank=True,
+        null=True,
+    )
+    image = models.ImageField(
+        default='images/profile_pics/default_avatar.jpg',
+        upload_to='images/profile_pics/',
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        managed = True
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 
     def __str__(self):
         return f'{self.user.username} Profile'
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
+
+        print(self.image.path)
 
         img = Image.open(self.image.path)
 

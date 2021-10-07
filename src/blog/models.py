@@ -5,6 +5,13 @@ from django.conf import settings
 from django.urls import reverse
 from django.db import models
 
+
+def _rename_file(username, filename):
+    time = timezone.now()
+    new_name = '_'.join([username, time.date(), time.time(), filename])
+    return new_name
+
+
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -22,18 +29,22 @@ class Post(models.Model):
 
 class File(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=60)
-    file = models.FileField(null=True, blank=True, upload_to='files')
+    name = models.CharField(max_length=60, null=True, blank=True)
+    file = models.FileField(
+        null=True,
+        blank=True,
+        upload_to='files/'
+    )
     descriptions = models.TextField()
     upload_data = models.DateTimeField(default=timezone.now)
 
-    def upload(self):
-        self.published_date = timezone.now()
-        self.save()
+    # def upload(self):
+    #     self.published_date = timezone.now()
+    #     self.save()
 
 
     def __str__(self):
-        return f'{self.author} : {self.title}'
+        return f'{self.file.name}'
 
 
     def extension(self):
@@ -42,4 +53,5 @@ class File(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('file-detail', kwargs={'pk': self.pk})
+
