@@ -2,22 +2,39 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="{% static 'css/posts.css' %}">
-  {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endcomment %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <link rel="shortcut icon" href={% static "images/favicon.ico" %} type="image/x-icon">
+    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com"> {% endcomment %}
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Home</title>
 </head>
 
 <body>
-  {% static 'css/posts.css' %}
-  {% include 'components/navbar.html' %}
-  <div class="container">
-  {% block content %}
+<div class="header">
+  <h1>Home Server</h1>
+  <p>Server for storing files, simplifying the exchange between the devices of the local network and remote printing</p>
+</div>
 
-  {% endblock %}
-  </div>
+{% include 'components/navbar.html' %}
+
+{% block content %}
+<div class="row">
+
+{% block side_column %}
+{% include 'components/side_column.html' %}
+{% endblock side_column %}
+
+{% block main_column %}
+{% endblock main_column %}
+
+</div>
+{% endblock content %}
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
 </body>
-
 </html>

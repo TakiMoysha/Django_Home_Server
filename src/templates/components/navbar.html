@@ -1,14 +1,6 @@
-<header>
-  <div class="container">
-    <a class="header-logo" href='./'>Logo<span>small text</span></a>
-    <div class="menu-header-container">
-      <nav id="menu-header" class="menu">
-        <li id="menu-item" class="menu-item"><a href={% url "index" %}>Home</a></li>
-        <li id="menu-item" class="menu-item"><a href={% url "index" %}>Files</a></li>
-        <li id="menu-item" class="menu-item"><a href={% url "profile" %}>User</a></li>
-        <li id="menu-item" class="menu-item"><a href={% url "login" %}>Login</a></li>
-        <li id="menu-item" class="menu-item"><a href={% url "logout" %}>Logout</a></li>
-      </nav>
-    </div>
-  </div>
-</header>
+<div class="navbar">
+  <a href={% url "index" %} class="menu-item active">Home</a>
+  <a href={% url "files" %} class="menu-item">Files</a>
+  <a href={% url "my_profile" %} class="menu-item">Profile</a>
+  <a href={% url "login" %} class="menu-item right">Sign In</a>
+</div>

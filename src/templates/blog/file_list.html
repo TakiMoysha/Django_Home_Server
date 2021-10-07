@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block main_column %}
+<div class="main">
+    <h1> File List </h1>
+    {% for file in files_list %}
+        <a href={% url "file_details" primary_key=file.id %}><h2>{{ file.name }}</h2></a>
+
+        <h5>Upload date : {{ file.upload_data }}</h5>
+        <p></p>
+        <p>{{ file.author }} : {{ file.file }}</p>
+        <p>{{ file.descriptions }}</p>
+    {% endfor %}
+</div>
+{% endblock main_column %}

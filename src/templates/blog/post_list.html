@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block main_column %}
+<div class="main">
     <h1> Post List </h1>
     {% if user.is_authenticated %}
         {% include 'components/new_post.html' %}
@@ -14,12 +15,5 @@
             <p><a href={% url "post_detail" primary_key=post.id %}>Link</a></p>
         </div>
     {% endfor %}
-{% endblock %}
-
-<div>
-  <h2>Title</h2>
-  <p>Tasogdnhasdofgha</p>
-  <span class="time">8:33<span>
-  <span class="data">02.03.2133<span>
-  <link>Link</link>
 </div>
+{% endblock main_column %}

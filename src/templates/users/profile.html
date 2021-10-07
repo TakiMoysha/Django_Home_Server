@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
-{% block content %}
-    <h1>{{ request.user }}</h1>
-{% endblock content %}
+{% block main_column %}
+<div class="main">
+    <div class="user-header">
+        <div class="user-profile-top">
+            <span class="avatar-wrapper">
+                <a href={{ user.profile.image.url }} class="avatar avatar--1">
+                    <img src={{ user.profile.image.url }} alt="Username" class="avatar" width="192" height="192" loading="lazy"></a>
+            </span>
+            <div class="user-profile-top-content">
+                <h2>{{ request.user }} | {{ user.permissions }}</h2>
+                <h5>User status</h5>
+            </div>
+        </div>
+        <div class="user-profile-bottom">
+            <span class="user-scroll-header" role="navigation">
+                <a href="#page_one" class="user-profile-tab ripple-button tabs-button" role="tab" for="page_one_trigger">
+                    page1
+                </a>
+                <a href="#page_two" class="user-profile-tab ripple-button tabs-button" role="tab" for="page_two_trigger">
+                    page2
+                </a>
+                <a href="#page_three" class="user-profile-tab ripple-button tabs-button" role="tab" for="page_three_trigger">
+                    page3
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="tabs">
+        <div class="user-profile-bottom-tab tab-content" id="page_one">Page One</div>
+        <div class="user-profile-bottom-tab tab-content" id="page_two">Page Two</div>
+        <div class="user-profile-bottom-tab tab-content" id="page_three">Page Three</div>
+    </div>
+</div>
+
+{% endblock main_column %}
