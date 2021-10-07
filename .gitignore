@@ -54,8 +54,11 @@ target/
 *.pot
 *.pyc
 __pycache__/
+migrations/
 local_settings.py
 staticfiles/
+
+**/media/**
 
 .env
 db.sqlite3
