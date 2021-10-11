@@ -1,7 +1,8 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from user.models import Profile
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
@@ -18,10 +19,24 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+# # profile view with flag (one view for my_profile and profile)
+# def profile(request, username):
+#     try:
+#         user = Profile.objects.get(username=request.user)
+#     except Exception as err:
+#         raise Http404
+#     editable = False
+#     if request.user.is_authenticated() and request.user == user:
+#         editable = True
+
+#     context = locals()
+#     return render(request, 'users/profile.html', context)
+
+
 def profile(request, username):
-    user = User.objects.get(username=request.user)
-    print(username)
-    context = {}
+    user = get_object_or_404(User, username=username)
+    # user = Profile.objects.get(username)
+    context = {"user": user}
     return render(request, 'users/profile.html', context)
 
 

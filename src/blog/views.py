@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.storage import FileSystemStorage
 from django.views import View
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
@@ -57,7 +58,6 @@ def post_new(request):
 
 def file_details(request, primary_key):
     file = get_object_or_404(File, pk=primary_key)
-    print(file)
     context = {'file': file}
     return render(request, 'blog/file_details.html', context)
 
@@ -71,7 +71,15 @@ def file_list(request):
 
 @login_required
 def file_new(request):
-    pass
+    context = {}
+    if request.method == 'POST':
+        upload_file = request.FILES['document']
+        fs = FileSystemStorage()
+        name = fs.save(upload_file.name, upload_file)
+        context['url'] = fs.url(name)
+        print(context)
+    return render(request, 'blog/file_new.html', context)
+
 
 
 class BaseView(View):

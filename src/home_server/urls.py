@@ -2,10 +2,11 @@ from django.urls import path, include
 from django.contrib import admin
 
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
-from blog.views import file_list, post_list, post_details, post_new
+from blog.views import file_details, file_list, file_new, post_list, post_details, post_new
 
 from user.views import register, profile, my_profile, login_view, logout_view
 
@@ -18,10 +19,11 @@ urlpatterns = [
     path('post/<int:primary_key>/', post_details, name='post_detail'),
 
     path('files/', file_list, name='files'),
-    path('file/<int:primary_key>/', post_list, name='file_details'),
+    path('file/new/', file_new, name='file_new'),
+    path('file/<int:primary_key>/', file_details, name='file_details'),
 
     path('profile/', my_profile, name='my_profile'),
-    path('profile/<str:slug>/', profile, name='profile'),
+    url(r'^profile/(?P<username>[\w\-]+)/$', profile, name='profile'),
     path('register/', register, name='register'),
 
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),

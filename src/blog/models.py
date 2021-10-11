@@ -33,18 +33,14 @@ class File(models.Model):
     file = models.FileField(
         null=True,
         blank=True,
-        upload_to='files/'
+        upload_to=f'files/'
     )
     descriptions = models.TextField()
     upload_data = models.DateTimeField(default=timezone.now)
 
-    # def upload(self):
-    #     self.published_date = timezone.now()
-    #     self.save()
-
 
     def __str__(self):
-        return f'{self.file.name}'
+        return self.name or self.file.name
 
 
     def extension(self):

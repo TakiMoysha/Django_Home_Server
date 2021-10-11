@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <h1> {{ post.title }} </h1>
-    <div> {{ post.text }} </div>
-{% endblock %}
+{% block main_column %}
+<div class="main">
+    <h1>{{ post.title }}</h1>
+    <h2>{{ post.author }}</h2>
+    <div>{{ post.text }}</div>
+</div>
+{% endblock main_column %}

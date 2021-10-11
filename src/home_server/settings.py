@@ -193,3 +193,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Settings for django-crispy-forms
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Redirect to that url after login in site
+LOGIN_REDIRECT_URL = '/'
