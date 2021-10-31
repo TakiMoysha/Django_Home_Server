@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
@@ -10,11 +11,11 @@ class Profile(models.Model):
         blank=True,
         null=True,
     )
+
     image = models.ImageField(
         default='images/profile_pics/default_avatar.jpg',
-        upload_to='images/profile_pics/',
-        blank=True,
-        null=True,
+        upload_to=
+            (lambda instance, filename: f'images/profile_pics/{instance.user.username}/{filename}'),
     )
 
     class Meta:
@@ -23,16 +24,14 @@ class Profile(models.Model):
         verbose_name_plural = 'Users'
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'Profile {self.user.username}'
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
 
-        print(self.image.path)
-
         img = Image.open(self.image.path)
-
         if img.height > 512 or img.width > 512:
             output_size = (512, 512)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
