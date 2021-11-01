@@ -5,13 +5,6 @@ from django.conf import settings
 from django.urls import reverse
 from django.db import models
 
-
-def _rename_file(username, filename):
-    time = timezone.now()
-    new_name = '_'.join([username, time.date(), time.time(), filename])
-    return new_name
-
-
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -31,11 +24,10 @@ class File(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=60, null=True, blank=True)
     file = models.FileField(
-        null=True,
-        blank=True,
-        upload_to=f'files/'
+        upload_to=
+            (lambda instance, filename: f'files/{instance.author.username}/{filename}'),
     )
-    descriptions = models.TextField()
+    descriptions = models.TextField(null=True, blank=True)
     upload_data = models.DateTimeField(default=timezone.now)
 
 
@@ -43,9 +35,15 @@ class File(models.Model):
         return self.name or self.file.name
 
 
+    def save(self, *args, **kwargs):
+        if (self.name == None):
+            self.name = self.file.name
+        super(File, self).save(*args, **kwargs)
+
+
     def extension(self):
-        absolute_path, extension = os.path.splitext(self.file.name)
-        return extension
+        absolute_path, var_extension = os.path.splitext(self.file.name)
+        return var_extension
 
 
     def get_absolute_url(self):

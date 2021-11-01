@@ -1,4 +1,3 @@
-import os
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
@@ -11,7 +10,6 @@ class Profile(models.Model):
         blank=True,
         null=True,
     )
-
     image = models.ImageField(
         default='images/profile_pics/default_avatar.jpg',
         upload_to=
