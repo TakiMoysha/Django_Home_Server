@@ -1,6 +1,7 @@
 <div class="navbar">
   <a href={% url "index" %} class="menu-item active">Home</a>
   <a href={% url "files" %} class="menu-item">Files</a>
+  <a href={% url "feedback" %} class="menu-item">Feedback</a>
   {% if request.user.is_authenticated %}
     <a href={% url "my_profile" %} class="menu-item">Profile</a>
     <a href="" class="menu-item">Traceback Base</a>

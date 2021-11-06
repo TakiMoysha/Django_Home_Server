@@ -6,12 +6,13 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
-from blog.views import file_details, file_list, file_new, post_list, post_details, post_new
+from blog.views import file_details, file_list, file_new, post_list, post_details, post_new, feedback_view
 
 from user.views import register, profile, my_profile, login_view, logout_view
 
 urlpatterns = [
     path('', post_list, name='index'),
+    path('', post_list, name='homepage'),
 
     path('admin/', admin.site.urls, name='admin'),
 
@@ -25,6 +26,8 @@ urlpatterns = [
     path('profile/', my_profile, name='my_profile'),
     url(r'^profile/(?P<username>[\w\-]+)/$', profile, name='profile'),
     path('register/', register, name='register'),
+
+    path('feedback/', feedback_view, name='feedback'),
 
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     # path('login/', login_view, name='login'),
